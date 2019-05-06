@@ -42,7 +42,9 @@ class Core(private val context: Context) {
             trackingProtectionPolicy = createTrackingProtectionPolicy(prefs),
             historyTrackingDelegate = HistoryDelegate(historyStorage)
         )
-        EngineProvider.createEngine(context, defaultSettings)
+        val engine = EngineProvider.createEngine(context, defaultSettings)
+        engine.installWebExtension("test@cliqz.com", "resource://android/assets/addons/webext-test/", true)
+        engine
     }
 
     /**
